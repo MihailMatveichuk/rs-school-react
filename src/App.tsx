@@ -1,16 +1,15 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import { Component } from 'react';
 import './App.scss';
 import React from 'react';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div className="App">
-      <p>Hello world</p>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div style={{ color: 'red', fontSize: '25px' }} className="App">
+        <p>Hello world</p>
+      </div>
+    );
+  }
 }
 
 export default App;
