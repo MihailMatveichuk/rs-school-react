@@ -18,7 +18,7 @@ class Card extends Component {
             >
               Rating:
             </span>{' '}
-            {rating + '★'}
+            {rating + ' ★'}
           </p>
           <a href="" className="button">
             В корзину

@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './Search.scss';
 
 class Search extends Component {
-  state = {
-    term: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: '',
+    };
+  }
 
   onUpdateSearch = (e: { target: { value: string } }) => {
     const term = e.target.value;
