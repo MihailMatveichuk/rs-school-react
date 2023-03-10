@@ -4,10 +4,11 @@ import './Cards.scss';
 
 class Cards extends Component {
   render() {
+    console.log(this.props.data);
     return (
       <div className="cards">
         {this.props.data.map((item: object) => {
-          <Card item={item} />;
+          return <Card item={item} key={item.id} />;
         })}
       </div>
     );

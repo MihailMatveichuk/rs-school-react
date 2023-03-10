@@ -6,10 +6,15 @@ class Card extends Component {
     const { id, title, description, price, thumbnail } = this.props.item;
     return (
       <div className="card" key={id}>
-        <img src={thumbnail} alt={title} />
-        <span>{title}</span>
-        <span>{description}</span>
-        <span>{price}</span>
+        <div className="top-part">
+          <img src={thumbnail} alt={title} />
+        </div>
+
+        <div className="bottom-part">
+          <p>{title}</p>
+          <p>{description}</p>
+          <p>{price}</p>
+        </div>
       </div>
     );
   }

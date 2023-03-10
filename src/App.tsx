@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props: object) {
     super(props);
     this.state = {
-      data: data,
+      data,
       term: '',
     };
   }
@@ -20,11 +20,12 @@ class App extends Component {
   };
 
   render() {
+    const { data } = this.state;
     return (
       <div className="main-page">
         <Header onUpdateSearch={this.onUpdateSearch} />
         <Routes>
-          <Route path="/" element={<Cards data={this.state.data} />} />
+          <Route path="/" element={<Cards data={data} />} />
           <Route path="/about" element={<About />} />
           {/* <Route path="*" element={<Error />} /> */}
         </Routes>
