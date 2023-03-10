@@ -14,10 +14,15 @@ class App extends Component {
       term: '',
     };
   }
+
+  onUpdateSearch = (term: string) => {
+    this.setState({ term });
+  };
+
   render() {
     return (
       <div className="main-page">
-        <Header />
+        <Header onUpdateSearch={this.onUpdateSearch} />
         <Routes>
           <Route path="/" element={<Cards data={this.state.data} />} />
           <Route path="/about" element={<About />} />

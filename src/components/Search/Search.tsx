@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Search.scss';
 
-export class SearchElement extends Component {
+class Search extends Component {
   state = {
     term: '',
   };
@@ -11,12 +11,13 @@ export class SearchElement extends Component {
     this.setState({ term });
     this.props.onUpdateSearch(term);
   };
+
   render() {
     return (
       <form>
         <input
           type="text"
-          className="search"
+          className="search form-control search-input"
           placeholder="Search"
           defaultValue={this.state.term}
           onChange={this.onUpdateSearch}
@@ -25,3 +26,5 @@ export class SearchElement extends Component {
     );
   }
 }
+
+export default Search;

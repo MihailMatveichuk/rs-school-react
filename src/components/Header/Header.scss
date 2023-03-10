@@ -1,4 +1,10 @@
-.header {
+.header-container {
+  margin-top: 15px;
+  background-color: #3d5a80;
+  border-radius: 4px;
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
   max-width: 95%;
-  background-color: rgba(127, 255, 212, 0.362);
+  padding: 5px;
+  background-color: rgba(226, 238, 234, 0.7);
+  display: flex;
 }
