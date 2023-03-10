@@ -1,0 +1,15 @@
+.card {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  outline: none;
+  img {
+    width: 100%;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 300;
+  }
+}
