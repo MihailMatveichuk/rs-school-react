@@ -7,9 +7,11 @@ class Cards extends Component {
     console.log(this.props.data);
     return (
       <div className="cards">
-        {this.props.data.map((item: object) => {
-          return <Card item={item} key={item.id} />;
-        })}
+        {this.props.data
+          .map((item: object) => {
+            return <Card item={item} key={item.id} />;
+          })
+          .splice(0, 50)}
       </div>
     );
   }
