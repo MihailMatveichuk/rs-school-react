@@ -8,13 +8,15 @@ class Header extends Component {
   render() {
     return (
       <div className="header-container">
-        <div className="header-h1">Hello</div>
-
-        <div className="right-part-header">
-          <Search onUpdateSearch={this.props.onUpdateSearch} />
-          <Link to="/about">
-            <About />
+        <div className="top-nav">
+          <Link to="/" className="active">
+            Home
           </Link>
+          <Link to="/about">About us</Link>
+        </div>
+
+        <div className="bottom-nav">
+          <Search onUpdateSearch={this.props.onUpdateSearch} />
         </div>
       </div>
     );

@@ -1,0 +1,7 @@
+.search {
+  width: 20rem;
+}
+
+.search::before {
+  content: '★';
+}

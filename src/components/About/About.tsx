@@ -4,8 +4,8 @@ import './About.scss';
 class About extends Component {
   render() {
     return (
-      <div>
-        <span className="about">About</span>
+      <div className="about">
+        <p>About</p>
       </div>
     );
   }
