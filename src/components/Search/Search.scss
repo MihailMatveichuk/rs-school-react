@@ -1,6 +1,9 @@
 .search {
   width: 10rem;
-  transition: all 0.4s;
+  border: 2px solid #324b4e3f;
+  background: #fffefd;
+  outline: none;
+  transition: 0.3s linear;
 }
 
 .search:focus {

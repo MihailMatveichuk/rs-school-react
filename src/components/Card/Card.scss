@@ -12,6 +12,7 @@
 }
 .product-item:hover {
   border-bottom: 2px solid #fc5a5a;
+  box-shadow: 10px 10px 15px rgba(230, 103, 103, 0.232);
 }
 .product-item img {
   display: block;
@@ -57,7 +58,7 @@
   transition: all 1s;
   &__active {
     background: #747171ef;
-    height: 50%;
+    height: 70%;
     padding: 15px 0;
     top: 0;
     color: #f1f1f1;

@@ -15,7 +15,7 @@ class Card extends Component {
   };
 
   render() {
-    const { id, title, rating, price, thumbnail } = this.props.item;
+    const { id, title, rating, price, thumbnail, brand } = this.props.item;
     const style = this.state.toggle ? `product-desc__active` : 'product-desc';
     const safeDesc = (id: string) => {
       if (this.props.item.id === id) {
@@ -28,17 +28,16 @@ class Card extends Component {
           <img src={thumbnail} alt={title} />
           <div className="product-list" id={id}>
             <h3>{title}</h3>
-            <span className="price">{price + '$'}</span>
-            <p>
-              <span
-                style={{
-                  fontWeight: 'bold',
-                }}
-              >
-                Rating:
-              </span>{' '}
-              {rating + ' ★'}
+            <p className="price">{price + '$'}</p>
+            <p>{`Brand: ${brand}`}</p>
+            <p
+              style={{
+                fontWeight: 'bold',
+              }}
+            >
+              Rating: {rating + ' ★'}
             </p>
+
             <div className={style}>
               <span>{safeDesc(id)}</span>
             </div>

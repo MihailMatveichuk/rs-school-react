@@ -16,8 +16,7 @@ class Header extends Component {
         home: false,
         about: true,
       });
-    }
-    if (e.target.id == 'home') {
+    } else if (e.target.id == 'home') {
       this.setState({
         home: true,
         about: false,
