@@ -15,8 +15,9 @@ class Cards extends Component {
   render() {
     const { offset } = this.state;
     const { data } = this.props;
-    const displayStyle = offset == 100 ? 'none' : 'block';
-    console.log(offset == 100);
+    console.log(data.length);
+    console.log(offset);
+    const displayStyle = data.length - offset <= 0 || data.length < 9 ? 'none' : 'block';
     return (
       <div className="cards">
         <div className="cards-field">

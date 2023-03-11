@@ -6,6 +6,7 @@ import Cards from './components/Cards/Cards';
 import About from './components/About/About';
 import Error from './components/Error/Error';
 import './App.scss';
+import { Footer } from './components/Footer/Footer';
 
 class App extends Component {
   constructor(props: object) {
@@ -46,7 +47,7 @@ class App extends Component {
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     );
   }

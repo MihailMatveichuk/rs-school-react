@@ -1,8 +1,8 @@
 .header-container {
-  margin: 15px 10rem;
-  padding: 5px;
+  padding: 15px 10rem;
   display: flex;
   justify-content: space-between;
+  border-bottom: 0.5px solid rgba(138, 132, 132, 0.248);
 }
 
 .top-nav {
@@ -19,6 +19,7 @@
   padding: 6px 10px;
   text-decoration: none;
   font-size: 17px;
+  transition: all 0.3s;
 }
 
 .top-nav a:hover {
@@ -29,6 +30,10 @@
 .top-nav a.active {
   background-color: #fc5a5acb;
   color: white;
+  transition: all 0.3s;
+  &:hover {
+    background-color: #ef2222cb;
+  }
 }
 
 .right-part-header {
