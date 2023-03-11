@@ -4,6 +4,7 @@ import { data } from './data';
 import Header from './components/Header/Header';
 import Cards from './components/Cards/Cards';
 import About from './components/About/About';
+import Error from './components/Error/Error';
 import './App.scss';
 
 class App extends Component {
@@ -43,7 +44,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<Cards data={visibleData} />} />
           <Route path="/about" element={<About />} />
-          {/* <Route path="*" element={<Error />} /> */}
+          <Route path="*" element={<Error />} />
         </Routes>
         {/* <Footer /> */}
       </div>
