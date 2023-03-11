@@ -1,7 +1,8 @@
 .search {
-  width: 20rem;
+  width: 10rem;
+  transition: all 0.4s;
 }
 
-.search::before {
-  content: '★';
+.search:focus {
+  width: 20rem;
 }

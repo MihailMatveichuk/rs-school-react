@@ -17,15 +17,13 @@ class Search extends Component {
 
   render() {
     return (
-      <form>
-        <input
-          type="text"
-          className="search form-control search-input"
-          placeholder="Search"
-          defaultValue={this.state.term}
-          onChange={this.onUpdateSearch}
-        />
-      </form>
+      <input
+        type="text"
+        className="search form-control search-input"
+        placeholder="Search..."
+        defaultValue={this.state.term}
+        onChange={this.onUpdateSearch}
+      />
     );
   }
 }
