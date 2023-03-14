@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Search.scss';
 
 class Search extends Component {
-  constructor(props) {
+  constructor(props: Array<object>) {
     super(props);
     this.state = {
       term: '',
@@ -21,7 +21,7 @@ class Search extends Component {
         type="text"
         className="search form-control search-input danger"
         placeholder="Search..."
-        value={this.state.term}
+        value={this.props.value || this.state.term}
         onChange={this.onUpdateSearch}
       />
     );

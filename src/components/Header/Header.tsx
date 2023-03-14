@@ -26,6 +26,7 @@ class Header extends Component {
 
   render() {
     const { home, about } = this.state;
+    const { onUpdateSearch, value } = this.props;
 
     const buttonsData = [
       { id: 'home', label: 'Home', active: home, url: '' },
@@ -51,7 +52,7 @@ class Header extends Component {
         <div className="top-nav">{buttons}</div>
 
         <div className="bottom-nav">
-          <Search onUpdateSearch={this.props.onUpdateSearch} />
+          <Search onUpdateSearch={onUpdateSearch} value={value} />
         </div>
       </div>
     );

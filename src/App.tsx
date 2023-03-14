@@ -7,6 +7,7 @@ import About from './components/About/About';
 import Error from './components/Error/Error';
 import './App.scss';
 import { Footer } from './components/Footer/Footer';
+import { ICards } from 'type';
 
 class App extends Component {
   constructor(props: object) {
@@ -24,14 +25,14 @@ class App extends Component {
     }));
   }
 
-  searchEmp = (items, term) => {
-    if (term.length === 0) {
+  searchEmp = (items: Array<Partial<ICards>>, term: string) => {
+    if (term.length == 0) {
       return items;
     } else {
       return items.filter((item) => {
         return (
-          item.title.toLowerCase().includes(term.toLowerCase()) ||
-          item.description.toLowerCase().includes(term.toLowerCase()) ||
+          item.title!.toLowerCase().includes(term.toLowerCase()) ||
+          item.description!.toLowerCase().includes(term.toLowerCase()) ||
           item.price == +term ||
           item.rating == +term
         );
@@ -49,7 +50,7 @@ class App extends Component {
     const visibleData = this.searchEmp(data, term);
     return (
       <div className="main-page">
-        <Header onUpdateSearch={this.onUpdateSearch} />
+        <Header onUpdateSearch={this.onUpdateSearch} value={term} />
         <Routes>
           <Route path="/" element={<Cards data={visibleData} />} />
           <Route path="/about" element={<About />} />
