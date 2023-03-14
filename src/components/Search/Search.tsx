@@ -21,7 +21,7 @@ class Search extends Component {
         type="text"
         className="search form-control search-input danger"
         placeholder="Search..."
-        defaultValue={this.state.term}
+        value={this.state.term}
         onChange={this.onUpdateSearch}
       />
     );

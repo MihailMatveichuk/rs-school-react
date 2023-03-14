@@ -17,6 +17,13 @@ class App extends Component {
     };
   }
 
+  componentDidMount(): void {
+    const value = localStorage.getItem('value');
+    this.setState(() => ({
+      term: value,
+    }));
+  }
+
   searchEmp = (items, term) => {
     if (term.length === 0) {
       return items;
@@ -34,6 +41,7 @@ class App extends Component {
 
   onUpdateSearch = (term: string) => {
     this.setState({ term });
+    localStorage.setItem('value', term);
   };
 
   render() {
