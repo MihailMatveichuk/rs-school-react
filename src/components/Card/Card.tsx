@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { ICards, SyntheticEvent } from 'type';
 import './Card.scss';
 
-class Card extends Component {
+class Card extends Component<{ item: ICards; key: number }, { toggle: boolean; id: string }> {
   state = {
     toggle: false,
     id: '',
   };
 
-  onToggleDesc = (e: { target: { parentNode: { id: string } } }) => {
+  onToggleDesc = (e: SyntheticEvent) => {
     this.setState(({ toggle }) => ({
       toggle: !toggle,
       id: e.target.parentNode.id,
@@ -17,7 +18,7 @@ class Card extends Component {
   render() {
     const { id, title, rating, price, thumbnail, brand } = this.props.item;
     const style = this.state.toggle ? `product-desc__active` : 'product-desc';
-    const safeDesc = (id: string) => {
+    const safeDesc = (id: number) => {
       if (this.props.item.id === id) {
         return this.props.item.description;
       }
@@ -26,7 +27,7 @@ class Card extends Component {
       <>
         <div className="product-item" key={id}>
           <img src={thumbnail} alt={title} />
-          <div className="product-list" id={id}>
+          <div className="product-list" key={id}>
             <h3>{title}</h3>
             <p className="price">{price + '$'}</p>
             <p>{`Brand: ${brand}`}</p>

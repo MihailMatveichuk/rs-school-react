@@ -1,16 +1,19 @@
-import About from '../About/About';
 import React, { Component } from 'react';
 import Search from '../Search/Search';
-import './Header.scss';
 import { Link } from 'react-router-dom';
+import { SyntheticHeader } from 'type';
+import './Header.scss';
 
-class Header extends Component {
+class Header extends Component<
+  { onUpdateSearch: (term: string) => void; value: string },
+  { home: boolean; about: boolean }
+> {
   state = {
     home: true,
     about: false,
   };
 
-  onToggleActive = (e: { target: { id: string } }) => {
+  onToggleActive = (e: SyntheticHeader) => {
     if (e.target.id == 'about') {
       this.setState({
         home: false,
@@ -37,7 +40,7 @@ class Header extends Component {
       return (
         <Link
           to={`/${button.url}`}
-          className={button.active ? 'active' : null}
+          className={button.active ? 'active' : undefined}
           id={button.id}
           key={i}
           onClick={this.onToggleActive}

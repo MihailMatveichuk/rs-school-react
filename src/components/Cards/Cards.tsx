@@ -1,8 +1,9 @@
 import Card from '../Card/Card';
 import React, { Component } from 'react';
+import { ICards } from 'type';
 import './Cards.scss';
 
-class Cards extends Component {
+class Cards extends Component<{ data: Array<ICards> }, { offset: number }> {
   state = {
     offset: 28,
   };
@@ -20,13 +21,13 @@ class Cards extends Component {
       <div className="cards">
         <div className="cards-field">
           {data
-            .map((item: object) => {
+            .map((item: ICards) => {
               return <Card item={item} key={item.id} />;
             })
             .splice(0, offset)}
         </div>
         <div className="button-next">
-          <button style={{ display: `${displayStyle}` }} onClick={this.onAddCards}>
+          <button title="load" style={{ display: `${displayStyle}` }} onClick={this.onAddCards}>
             Load more
           </button>
         </div>

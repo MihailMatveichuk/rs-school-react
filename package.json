@@ -15,11 +15,13 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.0.2",
     "sass": "^1.58.3",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.22.0",
     "@vitejs/plugin-react": "^3.1.0",

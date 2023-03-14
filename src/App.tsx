@@ -5,18 +5,15 @@ import Header from './components/Header/Header';
 import Cards from './components/Cards/Cards';
 import About from './components/About/About';
 import Error from './components/Error/Error';
-import './App.scss';
 import { Footer } from './components/Footer/Footer';
-import { ICards } from 'type';
+import { ICards, MyData, Term } from 'type';
+import './App.scss';
 
-class App extends Component {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      data,
-      term: '',
-    };
-  }
+class App extends Component<{ object: ICards }, { data: MyData; term: Term }> {
+  state = {
+    data,
+    term: '',
+  };
 
   componentDidMount(): void {
     const value = localStorage.getItem('value');
@@ -25,16 +22,16 @@ class App extends Component {
     }));
   }
 
-  searchEmp = (items: Array<Partial<ICards>>, term: string) => {
-    if (term.length == 0) {
+  searchEmp = (items: Array<ICards>, term: Term) => {
+    if (term!.length == 0) {
       return items;
     } else {
       return items.filter((item) => {
         return (
-          item.title!.toLowerCase().includes(term.toLowerCase()) ||
-          item.description!.toLowerCase().includes(term.toLowerCase()) ||
-          item.price == +term ||
-          item.rating == +term
+          item.title!.toLowerCase().includes(term!.toLowerCase()) ||
+          item.description!.toLowerCase().includes(term!.toLowerCase()) ||
+          item.price == +term! ||
+          item.rating == +term!
         );
       });
     }

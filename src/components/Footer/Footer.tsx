@@ -11,7 +11,6 @@ export class Footer extends Component {
     return (
       <div className="footer">
         <div className="links">
-          {' '}
           <a href={Mikhail_link}>
             <img src={Mikhail_img} className="mike-icon" alt={Mikhail} />
           </a>
