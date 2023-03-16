@@ -9,7 +9,7 @@ import { Footer } from './components/Footer/Footer';
 import { ICards, MyData, Term } from 'type';
 import './App.scss';
 
-class App extends Component<{ object: ICards }, { data: MyData; term: Term }> {
+class App extends Component {
   state = {
     data,
     term: '',
