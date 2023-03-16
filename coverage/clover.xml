@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1678983305418" clover="3.2.0">
-  <project timestamp="1678983305419" name="All files">
-    <metrics statements="2222" coveredstatements="2110" conditionals="18" coveredconditionals="15" methods="21" coveredmethods="12" elements="2261" coveredelements="2137" complexity="0" loc="2222" ncloc="2222" packages="8" files="10" classes="10"/>
+<coverage generated="1678987037520" clover="3.2.0">
+  <project timestamp="1678987037521" name="All files">
+    <metrics statements="2222" coveredstatements="2117" conditionals="19" coveredconditionals="16" methods="21" coveredmethods="13" elements="2262" coveredelements="2146" complexity="0" loc="2222" ncloc="2222" packages="8" files="10" classes="10"/>
     <package name="src">
       <metrics statements="1976" coveredstatements="1959" conditionals="6" coveredconditionals="5" methods="7" coveredmethods="5"/>
       <file name="App.tsx" path="C:\data\js\RS SCHOOL\rs-school-react\src\App.tsx">
@@ -2117,22 +2117,22 @@
       </file>
     </package>
     <package name="src.components.Error">
-      <metrics statements="16" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="16" coveredstatements="16" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="Error.tsx" path="C:\data\js\RS SCHOOL\rs-school-react\src\components\Error\Error.tsx">
-        <metrics statements="16" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="16" coveredstatements="16" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>

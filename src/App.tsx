@@ -5,8 +5,9 @@ import Header from './components/Header/Header';
 import Cards from './components/Cards/Cards';
 import About from './components/About/About';
 import Error from './components/Error/Error';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './components/Footer/Footer';
-import { ICards, MyData, Term } from 'type';
+import { ICards, Term } from 'type';
 import './App.scss';
 
 class App extends Component {
@@ -47,12 +48,16 @@ class App extends Component {
     const visibleData = this.searchEmp(data, term);
     return (
       <div className="main-page">
-        <Header onUpdateSearch={this.onUpdateSearch} value={term} />
-        <Routes>
-          <Route path="/" element={<Cards data={visibleData} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <ErrorBoundary>
+          <Header onUpdateSearch={this.onUpdateSearch} value={term} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={<Cards data={visibleData} />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </ErrorBoundary>
         <Footer />
       </div>
     );
