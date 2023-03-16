@@ -53,7 +53,6 @@ class Header extends Component<
     return (
       <div className="header-container">
         <div className="top-nav">{buttons}</div>
-
         <div className="bottom-nav">
           <Search onUpdateSearch={onUpdateSearch} value={value} />
         </div>

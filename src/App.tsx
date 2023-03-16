@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   searchEmp = (items: Array<ICards>, term: Term) => {
-    if (term!.length == 0) {
+    if (term!.length === 0) {
       return items;
     } else {
       return items.filter((item) => {

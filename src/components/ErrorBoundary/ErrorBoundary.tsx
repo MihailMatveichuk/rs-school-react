@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import Error from '../Error/Error';
 
-class ErrorBoundary extends Component<{ children: object }> {
+class ErrorBoundary extends Component<{ children: React.ReactNode }, { error: boolean }> {
   state = {
     error: false,
   };
@@ -15,8 +15,9 @@ class ErrorBoundary extends Component<{ children: object }> {
   render() {
     if (this.state.error) {
       return <Error />;
+    } else {
+      return this.props.children;
     }
-    this.props.children;
   }
 }
 

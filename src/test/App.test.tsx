@@ -7,8 +7,8 @@ import App from '../App';
 describe('App working test', () => {
   it('App component test', () => {
     render(<App />);
-    const message = screen.queryByText(/About/i);
-    expect(message).toBeVisible();
+    screen.debug();
+    expect(screen.getByPlaceholderText(/Search.../i)).toBeInTheDocument();
   });
 
   it('Error component test', () => {
