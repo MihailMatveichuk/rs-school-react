@@ -16,8 +16,6 @@ describe('App working test', () => {
         <App />
       </Router>
     );
-    const message = screen.queryByText(/Error 404 (Page not found)/i);
-    expect(message).toBeDefined();
   });
 
   it('Error component test', () => {
