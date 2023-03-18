@@ -5,8 +5,16 @@ import About from '../components/About/About';
 import Error from '../components/Error/Error';
 import Card from '../components/Card/Card';
 import Search from '../components/Search/Search';
+import App from '../App';
+import Cards from '../components/Cards/Cards';
 
 describe('App working test', () => {
+  it('App component test', async () => {
+    await render(<App />);
+    const message = screen.queryByText(/Error 404 (Page not found)/i);
+    expect(message).toBeDefined();
+  });
+
   it('Error component test', () => {
     render(<Error />);
     const message = screen.queryByText(/Error 404 (Page not found)/i);
@@ -18,9 +26,13 @@ describe('App working test', () => {
     const message = screen.queryByText(/About/i);
     expect(message).toBeVisible();
   });
-});
 
-describe('Card show items', () => {
+  it('Cards component test', () => {
+    render(<Cards data={[]} />);
+    // const message = screen.queryByText(/About/i);
+    // expect(message).toBeVisible();
+  });
+
   it('Card component test', () => {
     render(<Card item={{}} key={1} />);
     expect(screen.queryByAltText('img')).toBeDefined();
@@ -31,9 +43,7 @@ describe('Card show items', () => {
     const message = screen.queryByText(/Description/i);
     expect(message).toBeDefined();
   });
-});
 
-describe('Search working components', () => {
   it('Search component test', () => {
     const onUpdateSearch = jest?.fn();
     render(<Search onUpdateSearch={onUpdateSearch} value={''} />);
