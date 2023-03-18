@@ -7,10 +7,15 @@ import Card from '../components/Card/Card';
 import Search from '../components/Search/Search';
 import App from '../App';
 import Cards from '../components/Cards/Cards';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('App working test', () => {
   it('App component test', async () => {
-    await render(<App />);
+    render(
+      <Router>
+        <App />
+      </Router>
+    );
     const message = screen.queryByText(/Error 404 (Page not found)/i);
     expect(message).toBeDefined();
   });

@@ -12,6 +12,7 @@ class ErrorBoundary extends Component<{ children: React.ReactNode }, { error: bo
       error: true,
     });
   }
+
   render() {
     if (this.state.error) {
       return <Error />;
