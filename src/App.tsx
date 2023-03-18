@@ -7,7 +7,7 @@ import About from './components/About/About';
 import Error from './components/Error/Error';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './components/Footer/Footer';
-import { ICards, Term } from 'type';
+import { ICards } from 'type';
 import './App.scss';
 
 class App extends Component {

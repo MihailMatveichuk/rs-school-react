@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { LINKS_FOOTER } from '../../footer_link';
 import { Component } from 'react';
 import React from 'react';
