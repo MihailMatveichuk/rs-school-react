@@ -26,7 +26,7 @@ class Card extends Component<{ item: ICards; key: number }, { toggle: boolean; i
     return (
       <>
         <div className="product-item" key={id}>
-          <img src={thumbnail} alt={title} />
+          <img src={thumbnail} alt="img" />
           <div className="product-list" key={id}>
             <h3>{title}</h3>
             <p className="price">{price + '$'}</p>

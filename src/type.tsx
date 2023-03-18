@@ -12,14 +12,9 @@ export type ICards = {
   images: string[];
 };
 
-export type State = {
-  data?: ICards;
-  term: string;
-};
-
 export type MyData = Array<ICards>;
 
-export type Term = string | null;
+export type Term = string;
 
 export interface SyntheticEventTarget extends EventTarget {
   parentNode: { id: string };

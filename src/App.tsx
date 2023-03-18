@@ -23,14 +23,14 @@ class App extends Component {
     }));
   }
 
-  searchEmp = (items: Array<ICards>, term: Term) => {
-    if (term!.length === 0) {
+  searchEmp = (items: Array<ICards>, term: string) => {
+    if (!term) {
       return items;
     } else {
-      return items.filter((item) => {
+      return items?.filter((item) => {
         return (
-          item.title!.toLowerCase().includes(term!.toLowerCase()) ||
-          item.description!.toLowerCase().includes(term!.toLowerCase()) ||
+          item.title.toLowerCase().includes(term.toLowerCase()) ||
+          item.description.toLowerCase().includes(term.toLowerCase()) ||
           item.price == +term! ||
           item.rating == +term!
         );
