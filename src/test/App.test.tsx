@@ -32,8 +32,6 @@ describe('App working test', () => {
 
   it('Cards component test', () => {
     render(<Cards data={[]} />);
-    // const message = screen.queryByText(/About/i);
-    // expect(message).toBeVisible();
   });
 
   it('Card component test', () => {
