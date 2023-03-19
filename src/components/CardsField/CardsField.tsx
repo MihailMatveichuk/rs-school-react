@@ -1,9 +1,9 @@
 import Card from '../Card/Card';
 import React, { Component } from 'react';
 import { ICards } from 'type';
-import './Cards.scss';
+import './CardsField.scss';
 
-class Cards extends Component<{ data: Array<ICards> }, { offset: number }> {
+class CardsField extends Component<{ data: Array<ICards> }, { offset: number }> {
   state = {
     offset: 28,
   };
@@ -36,4 +36,4 @@ class Cards extends Component<{ data: Array<ICards> }, { offset: number }> {
   }
 }
 
-export default Cards;
+export default CardsField;

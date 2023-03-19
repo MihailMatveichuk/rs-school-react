@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { data } from './data';
 import Header from './components/Header/Header';
-import Cards from './components/Cards/Cards';
+import CardsField from './components/CardsField/CardsField';
 import About from './components/About/About';
 import Error from './components/Error/Error';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
@@ -50,15 +50,13 @@ class App extends Component {
       <div className="main-page">
         <ErrorBoundary>
           <Header onUpdateSearch={this.onUpdateSearch} value={term} />
-        </ErrorBoundary>
-        <ErrorBoundary>
           <Routes>
-            <Route path="/" element={<Cards data={visibleData} />} />
+            <Route path="/" element={<CardsField data={visibleData} />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<Error />} />
           </Routes>
+          <Footer />
         </ErrorBoundary>
-        <Footer />
       </div>
     );
   }

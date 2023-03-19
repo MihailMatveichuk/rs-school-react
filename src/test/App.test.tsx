@@ -5,7 +5,7 @@ import Error from '../components/Error/Error';
 import Card from '../components/Card/Card';
 import Search from '../components/Search/Search';
 import App from '../App';
-import Cards from '../components/Cards/Cards';
+import CardsField from '../components/CardsField/CardsField';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('App working test', () => {
@@ -30,7 +30,7 @@ describe('App working test', () => {
   });
 
   it('Cards component test', () => {
-    render(<Cards data={[]} />);
+    render(<CardsField data={[]} />);
   });
 
   it('Card component test', () => {
