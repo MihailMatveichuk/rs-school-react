@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './Search.scss';
 
-class Search extends Component<
-  { value: string; onUpdateSearch: (term: string) => void },
-  { term: string }
-> {
+interface ISearchProps {
+  value: string;
+  onUpdateSearch: (term: string) => void;
+}
+
+class Search extends Component<ISearchProps, { term: string }> {
   state = {
     term: '',
   };

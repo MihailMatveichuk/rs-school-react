@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { ICards, SyntheticEvent } from 'type';
 import './Card.scss';
 
-class Card extends Component<{ item: ICards }, { toggle: boolean; id: string }> {
+interface ICardState {
+  toggle: boolean;
+  id: string;
+}
+
+class Card extends Component<{ item: ICards }, ICardState> {
   state = {
     toggle: false,
     id: '',
