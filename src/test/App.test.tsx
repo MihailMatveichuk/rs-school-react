@@ -35,7 +35,24 @@ describe('App working test', () => {
   });
 
   it('Card component test', () => {
-    render(<Card item={{}} key={1} />);
+    render(
+      <Card
+        item={{
+          id: 1,
+          title: '',
+          description: '',
+          price: 400,
+          discountPercentage: 50,
+          rating: 4.5,
+          stock: 40,
+          brand: '',
+          category: '',
+          thumbnail: '',
+          images: [],
+        }}
+        key={1}
+      />
+    );
     expect(screen.queryByAltText('img')).toBeDefined();
     expect(screen.queryByText(/price/i)).toBeDefined();
     expect(screen.queryByText(/Brand:/i)).toBeDefined();
