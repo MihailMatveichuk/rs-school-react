@@ -62,7 +62,7 @@ describe('App working test', () => {
   });
 
   it('Search component test', () => {
-    const onUpdateSearch = jest?.fn();
+    const onUpdateSearch = () => '';
     render(<Search onUpdateSearch={onUpdateSearch} value={''} />);
     expect(screen.queryByPlaceholderText(/Search.../i)).toBeDefined();
     expect(screen.queryByRole('text')).toBeDefined();
