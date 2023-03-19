@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ICards, SyntheticEvent } from 'type';
 import './Card.scss';
 
-class Card extends Component<{ item: ICards; key: number }, { toggle: boolean; id: string }> {
+class Card extends Component<{ item: ICards }, { toggle: boolean; id: string }> {
   state = {
     toggle: false,
     id: '',
@@ -25,9 +25,9 @@ class Card extends Component<{ item: ICards; key: number }, { toggle: boolean; i
     };
     return (
       <>
-        <div className="product-item" key={id}>
+        <div className="product-item">
           <img src={thumbnail} alt="img" />
-          <div className="product-list" key={id}>
+          <div className="product-list">
             <h3>{title}</h3>
             <p className="price">{price + '$'}</p>
             <p>{`Brand: ${brand}`}</p>
