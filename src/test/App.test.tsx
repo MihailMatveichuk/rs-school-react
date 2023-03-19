@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import { jest } from '@jest/globals';
 import React from 'react';
 import About from '../components/About/About';
 import Error from '../components/Error/Error';
