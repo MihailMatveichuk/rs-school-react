@@ -49,7 +49,6 @@ describe('App working test', () => {
           thumbnail: '',
           images: [],
         }}
-        key={1}
       />
     );
     expect(screen.queryByAltText('img')).toBeDefined();
