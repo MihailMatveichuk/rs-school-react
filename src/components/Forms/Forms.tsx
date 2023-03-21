@@ -56,6 +56,7 @@ class Forms extends Component {
             <label htmlFor="select" className="checkbox-field">
               I consent to my personal data:
               <input id="checkbox" name="checkbox" type="checkbox" className="custom-checkbox" />
+              <span className="checkmark"></span>
             </label>
             <button type="submit">Submit</button>
           </form>
