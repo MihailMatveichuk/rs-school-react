@@ -20,7 +20,7 @@ class Header extends Component<
         <div className="top-nav">
           <NavLink to={`/`}>Home</NavLink>
           <NavLink to={`/about`}>About us</NavLink>
-          <NavLink to={`/forms`}>Form</NavLink>
+          <NavLink to={`/form`}>Form</NavLink>
         </div>
         <div className="bottom-nav">
           <Search onUpdateSearch={onUpdateSearch} value={value} />

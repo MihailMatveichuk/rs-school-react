@@ -55,7 +55,7 @@ class App extends Component {
             <Route path="/" element={<CardsField data={visibleData} />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<Error />} />
-            <Route path="/forms" element={<Forms />} />
+            <Route path="/form" element={<Forms />} />
           </Routes>
           <Footer />
         </ErrorBoundary>
