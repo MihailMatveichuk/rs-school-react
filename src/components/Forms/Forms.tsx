@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CardsForm from '../CardsForm/CardsForm';
+import CardsFieldForm from '../CardFieldForm/CardFieldForm';
 import Photo from '../../assets/Avatar.png';
 import './Forms.scss';
 
@@ -40,10 +40,10 @@ class Forms extends Component {
             </div>
             <label htmlFor="name">Your first and second name</label>
             <input id="name" name="name" type="text" placeholder="Alex Popov" />
-            <label htmlFor="data">Your birthday</label>
+            <label htmlFor="birthday">Your birthday</label>
             <input
-              id="data"
-              name="data"
+              id="birthday"
+              name="birthday"
               type="date"
               defaultValue="2023-03-21"
               min="2018-01-01"
@@ -67,7 +67,7 @@ class Forms extends Component {
             <button type="submit">Submit</button>
           </form>
         </div>
-        <CardsForm data={data} />
+        <CardsFieldForm data={data} />
       </div>
     );
   }
