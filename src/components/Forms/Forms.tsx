@@ -4,29 +4,36 @@ import Photo from '../../assets/Avatar.png';
 import './Forms.scss';
 
 class Forms extends Component {
-  [x: string]: any;
   constructor(props) {
     super(props);
-    this.input = React.createRef();
+    this.formRef = React.createRef();
     this.state = {
       data: [],
-      card: {},
     };
   }
 
   handleSubmit = (event: { [x: string]: any; preventDefault: () => void }) => {
     event.preventDefault();
-    console.log(...this.input.current);
+    const card = {};
+    for (const key of this.formRef.current.elements) {
+      card[key.name] = key.value;
+      //   this.setState({
+      //     data: [...this.state.data, card],
+      //   });}
+    }
+    this.setState({
+      data: [...this.state.data, card],
+    });
   };
-
   render() {
+    const { data } = this.state;
     return (
       <div className="forms-field">
         <div className="form">
-          <form onSubmit={this.handleSubmit} ref={this.input}>
+          <form ref={this.formRef} onSubmit={this.handleSubmit}>
             <h2>Customer information</h2>
             <div className="logo-choose">
-              <input style={{ display: 'none' }} type="file" id="file" />
+              <input style={{ display: 'none' }} type="file" id="file" name="file" />
               <label htmlFor="file">
                 <img src={Photo} alt="file" id="input_img" />
               </label>
@@ -50,18 +57,17 @@ class Forms extends Component {
               <option value="Ukraine">Ukraine</option>
             </select>
             <label className="switch">
-              <input type="checkbox" />
+              <input type="checkbox" name="switcher" />
               <span className="slider round"></span>
             </label>
             <label htmlFor="select" className="checkbox-field">
               I consent to my personal data:
               <input id="checkbox" name="checkbox" type="checkbox" className="custom-checkbox" />
-              <span className="checkmark"></span>
             </label>
             <button type="submit">Submit</button>
           </form>
         </div>
-        <CardsForm />
+        <CardsForm data={data} />
       </div>
     );
   }
