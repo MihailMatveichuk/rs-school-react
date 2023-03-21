@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CardsForm from '../CardsForm/CardsForm';
 import Photo from '../../assets/Avatar.png';
 import './Forms.scss';
 
@@ -6,30 +7,33 @@ class Forms extends Component {
   [x: string]: any;
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.input = React.createRef();
+    this.state = {
+      data: [],
+      card: {},
+    };
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.current.value);
+  handleSubmit = (event: { [x: string]: any; preventDefault: () => void }) => {
     event.preventDefault();
-  }
+    console.log(...this.input.current);
+  };
 
   render() {
     return (
       <div className="forms-field">
         <div className="form">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} ref={this.input}>
             <h2>Customer information</h2>
             <div className="logo-choose">
-              <input style={{ display: 'none' }} type="file" id="file" ref={this.input} />
+              <input style={{ display: 'none' }} type="file" id="file" />
               <label htmlFor="file">
                 <img src={Photo} alt="file" id="input_img" />
               </label>
             </div>
             <label htmlFor="name">Your first and second name</label>
-            <input id="name" name="name" type="text" placeholder="Alex Popov" ref={this.input} />
-            <label htmlFor="data">Your first and second name</label>
+            <input id="name" name="name" type="text" placeholder="Alex Popov" />
+            <label htmlFor="data">Your birthday</label>
             <input
               id="data"
               name="data"
@@ -37,42 +41,32 @@ class Forms extends Component {
               defaultValue="2023-03-21"
               min="2018-01-01"
               max="2023-21-21"
-              ref={this.input}
             />
-            <label htmlFor="email">Your email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="name@gmail.com"
-              ref={this.input}
-            />
-            <label htmlFor="phone">Your phone</label>
-            <input
-              id="phone"
-              name="phone"
-              type="string"
-              placeholder="+375*********"
-              ref={this.input}
-            />
-            <label htmlFor="select"> Pick your sex:</label>
+            <label htmlFor="select"> Pick your country:</label>
             <select onChange={this.handleChange} id="select" name="select">
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Russia">Russia</option>
+              <option value="Poland">Poland</option>
+              <option value="Ukraine">Ukraine</option>
             </select>
+            <label className="switch">
+              <input type="checkbox" />
+              <span className="slider round"></span>
+            </label>
+            <label htmlFor="select" className="checkbox-field">
+              I consent to my personal data:
+              <input id="checkbox" name="checkbox" type="checkbox" className="custom-checkbox" />
+            </label>
             <button type="submit">Submit</button>
           </form>
         </div>
+        <CardsForm />
       </div>
     );
   }
 }
 
-// text input - name, surname (or both), zip-code;
-// date input - birthday, date of delivery;
-// dropdown/select - list of countries, list of states (User can choose only one element from the list)
 // checkbox - "I consent to my personal data" field, list of extra presents (User can choose several items from the list)
-// switcher - male/female, "I want to receive notifications about promo, sales, etc." / "I don’t want to receive notifications about promo, sales, etc."
-// file upload - profile picture
+// switcher - male/female, "I want to receive notifications about promo, sales, etc." / "I don’t want to receive notifications about promo, sales, etc.
 
 export default Forms;
