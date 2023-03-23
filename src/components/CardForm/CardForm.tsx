@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './CardForm.scss';
+import { ICardForm } from 'type';
 
-class CardForm extends Component {
+class CardForm extends Component<{ item: ICardForm }> {
   render() {
     const { file, name, birthday, select, switcher, checkbox } = this.props.item;
-    console.log(this.props);
     return (
       <div className="product-item">
         <img src={file} alt="img" />

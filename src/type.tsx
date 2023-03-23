@@ -12,6 +12,14 @@ export type ICards = {
   images: string[];
 };
 
+export interface ICardForm {
+  name: string;
+  birthday: string;
+  select: string;
+  switcher: boolean;
+  checkbox: boolean;
+}
+
 export type MyData = Array<ICards>;
 
 export type Term = string;

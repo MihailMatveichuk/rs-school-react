@@ -1,32 +1,70 @@
-import React, { Component } from 'react';
+import React, { ChangeEventHandler, Component, FormEvent, RefObject } from 'react';
 import CardsFieldForm from '../CardFieldForm/CardFieldForm';
 import Photo from '../../assets/Avatar.png';
 import './Forms.scss';
+import { ICardForm } from 'type';
 
-class Forms extends Component {
-  constructor(props) {
-    super(props);
-    this.formRef = React.createRef();
-    this.state = {
-      data: [],
-    };
-  }
+export interface IFormsState {
+  data: ICardForm[];
+  error: boolean;
+}
 
-  handleSubmit = (event: { [x: string]: any; preventDefault: () => void }) => {
+class Forms extends Component<IFormsState> {
+  private formRef: RefObject<HTMLFormElement> = React.createRef<HTMLFormElement>();
+  state = {
+    data: [],
+    error: false,
+  };
+
+  handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const card = {};
-    for (const key of this.formRef.current.elements) {
-      card[key.name] = key.value;
-      //   this.setState({
-      //     data: [...this.state.data, card],
-      //   });}
+    const card: ICardForm = {
+      name: '',
+      birthday: '',
+      select: '',
+      switcher: false,
+      checkbox: false,
+    };
+    if (!this.formRef.current) {
+      return null;
+    }
+    for (const key of Array.from(this.formRef.current.elements)) {
+      console.log((key as HTMLInputElement).value);
+      if (key.id === 'checkbox' || key.id === 'switcher') {
+        card[key.id] = (key as HTMLInputElement).checked;
+      } else if (key.id === 'name') {
+        const regex = new RegExp(
+          /^[А-ЯЁІЇЄҐ][а-яёіїєґ]{2,}\s[А-ЯЁІЇЄҐ][а-яёіїєґ]{2,}$|^[A-Z][a-z]{2,}\s[A-Z][a-z]{2,}$/gm
+        );
+        if (!regex.test((key as HTMLInputElement).value)) {
+          this.setState({
+            error: true,
+          });
+          return;
+        } else {
+          this.setState({
+            error: false,
+          });
+          card[key.id] = (key as HTMLInputElement).value;
+        }
+      } else {
+        if (key.id === 'birthday' || key.id === 'select') {
+          card[key.id] = (key as HTMLInputElement).value;
+        }
+      }
     }
     this.setState({
       data: [...this.state.data, card],
     });
+    alert('Data was saved');
   };
+
+  handleChange: ChangeEventHandler<HTMLSelectElement> | undefined;
+
+  onChangeInput = () => {};
+
   render() {
-    const { data } = this.state;
+    const { data, error } = this.state;
     return (
       <div className="forms-field">
         <div className="form">
@@ -40,13 +78,14 @@ class Forms extends Component {
             </div>
             <label htmlFor="name">Your first and second name</label>
             <input id="name" name="name" type="text" placeholder="Alex Popov" />
+            <span style={{ color: 'red' }}>{error ? 'Invalid value' : null}</span>
             <label htmlFor="birthday">Your birthday</label>
             <input
               id="birthday"
               name="birthday"
               type="date"
               defaultValue="2023-03-21"
-              min="2018-01-01"
+              min="1950-01-01"
               max="2023-21-21"
             />
             <label htmlFor="select"> Pick your country:</label>
@@ -57,23 +96,28 @@ class Forms extends Component {
               <option value="Ukraine">Ukraine</option>
             </select>
             <label className="switch">
-              <input type="checkbox" name="switcher" />
+              <input id="switcher" type="checkbox" name="switcher" />
               <span className="slider round"></span>
             </label>
             <label htmlFor="select" className="checkbox-field">
               I consent to my personal data:
-              <input id="checkbox" name="checkbox" type="checkbox" className="custom-checkbox" />
+              <input
+                id="checkbox"
+                name="checkbox"
+                type="checkbox"
+                className="custom-checkbox"
+                data-testid="consent-checkbox"
+              />
             </label>
             <button type="submit">Submit</button>
           </form>
         </div>
-        <CardsFieldForm data={data} />
+        <>
+          <CardsFieldForm data={data} />
+        </>
       </div>
     );
   }
 }
-
-// checkbox - "I consent to my personal data" field, list of extra presents (User can choose several items from the list)
-// switcher - male/female, "I want to receive notifications about promo, sales, etc." / "I don’t want to receive notifications about promo, sales, etc.
 
 export default Forms;
