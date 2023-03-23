@@ -7,7 +7,7 @@ class CardForm extends Component<{ item: ICardForm }> {
     const { file, name, birthday, select, switcher, checkbox } = this.props.item;
     return (
       <div className="product-item">
-        <img src={file} alt="img" />
+        <img src={file} alt={file} />
         <div className="product-list">
           <h3>{name}</h3>
           <p className="price">{`Birthday: ${birthday}`}</p>

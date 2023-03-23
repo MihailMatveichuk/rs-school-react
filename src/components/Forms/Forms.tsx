@@ -15,7 +15,7 @@ class Forms extends Component<IFormsState> {
   state = {
     data: [],
     errorName: false,
-    errorBirthday: false,
+    errorRights: false,
   };
 
   handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -33,6 +33,19 @@ class Forms extends Component<IFormsState> {
     }
     for (const key of Array.from(this.formRef.current.elements)) {
       if (key.id === 'checkbox' || key.id === 'switcher') {
+        if (key.id === 'checkbox') {
+          if ((key as HTMLInputElement).checked === false) {
+            this.setState({
+              errorRights: true,
+            });
+            return;
+          } else {
+            this.setState({
+              errorRights: false,
+            });
+            card[key.id] = (key as HTMLInputElement).checked;
+          }
+        }
         card[key.id] = (key as HTMLInputElement).checked;
       } else if (key.id === 'name') {
         const regex = new RegExp(
@@ -50,25 +63,15 @@ class Forms extends Component<IFormsState> {
           card[key.id] = (key as HTMLInputElement).value;
         }
       } else {
-        if (key.id === 'birthday') {
-          if ((key as HTMLInputElement).value === '') {
-            this.setState({
-              errorBirthday: true,
-            });
-            return;
-          } else {
-            this.setState({
-              errorBirthday: false,
-            });
-            card[key.id] = (key as HTMLInputElement).value;
-          }
-        } else if (key.id === 'select') {
+        if (key.id === 'birthday' || key.id === 'select') {
           card[key.id] = (key as HTMLInputElement).value;
         }
       }
     }
     this.setState({
       data: [...this.state.data, card],
+      errorName: false,
+      errorBirthday: false,
     });
     this.formRef.current.reset();
     alert('Data was saved');
@@ -77,7 +80,12 @@ class Forms extends Component<IFormsState> {
   handleChange: ChangeEventHandler<HTMLSelectElement> | undefined;
 
   render() {
-    const { data, errorName, errorBirthday } = this.state;
+    const { data, errorName, errorRights } = this.state;
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
+    const formattedDate = year + '-' + month + '-' + day;
     return (
       <div className="forms-field">
         <div className="form">
@@ -93,8 +101,14 @@ class Forms extends Component<IFormsState> {
             <input id="name" name="name" type="text" placeholder="Alex Popov" />
             <span style={{ color: 'red' }}>{errorName ? 'Invalid value' : null}</span>
             <label htmlFor="birthday">Your birthday</label>
-            <input id="birthday" name="birthday" type="date" min="1950-01-01" max="2023-21-21" />
-            <span style={{ color: 'red' }}>{errorBirthday ? 'Tick rights' : null}</span>
+            <input
+              id="birthday"
+              name="birthday"
+              type="date"
+              defaultValue={formattedDate}
+              min="1950-01-01"
+              max={formattedDate}
+            />
             <label htmlFor="select"> Pick your country:</label>
             <select onChange={this.handleChange} id="select" name="select">
               <option value="Belarus">Belarus</option>
@@ -115,6 +129,7 @@ class Forms extends Component<IFormsState> {
                 className="custom-checkbox"
                 data-testid="consent-checkbox"
               />
+              <span style={{ color: 'red' }}>{errorRights ? 'Tick rights' : null}</span>
             </label>
             <button type="submit">Submit</button>
           </form>
