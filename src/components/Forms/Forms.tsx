@@ -56,12 +56,11 @@ class Forms extends Component<IFormsState> {
     this.setState({
       data: [...this.state.data, card],
     });
+    this.formRef.current.reset();
     alert('Data was saved');
   };
 
   handleChange: ChangeEventHandler<HTMLSelectElement> | undefined;
-
-  onChangeInput = () => {};
 
   render() {
     const { data, error } = this.state;
