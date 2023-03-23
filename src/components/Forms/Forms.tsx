@@ -6,19 +6,22 @@ import { ICardForm } from 'type';
 
 export interface IFormsState {
   data: ICardForm[];
-  error: boolean;
+  errorName: boolean;
+  errorBirthday: boolean;
 }
 
 class Forms extends Component<IFormsState> {
   private formRef: RefObject<HTMLFormElement> = React.createRef<HTMLFormElement>();
   state = {
     data: [],
-    error: false,
+    errorName: false,
+    errorBirthday: false,
   };
 
   handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const card: ICardForm = {
+      file: '',
       name: '',
       birthday: '',
       select: '',
@@ -29,7 +32,6 @@ class Forms extends Component<IFormsState> {
       return null;
     }
     for (const key of Array.from(this.formRef.current.elements)) {
-      console.log((key as HTMLInputElement).value);
       if (key.id === 'checkbox' || key.id === 'switcher') {
         card[key.id] = (key as HTMLInputElement).checked;
       } else if (key.id === 'name') {
@@ -38,17 +40,29 @@ class Forms extends Component<IFormsState> {
         );
         if (!regex.test((key as HTMLInputElement).value)) {
           this.setState({
-            error: true,
+            errorName: true,
           });
           return;
         } else {
           this.setState({
-            error: false,
+            errorName: false,
           });
           card[key.id] = (key as HTMLInputElement).value;
         }
       } else {
-        if (key.id === 'birthday' || key.id === 'select') {
+        if (key.id === 'birthday') {
+          if ((key as HTMLInputElement).value === '') {
+            this.setState({
+              errorBirthday: true,
+            });
+            return;
+          } else {
+            this.setState({
+              errorBirthday: false,
+            });
+            card[key.id] = (key as HTMLInputElement).value;
+          }
+        } else if (key.id === 'select') {
           card[key.id] = (key as HTMLInputElement).value;
         }
       }
@@ -63,7 +77,7 @@ class Forms extends Component<IFormsState> {
   handleChange: ChangeEventHandler<HTMLSelectElement> | undefined;
 
   render() {
-    const { data, error } = this.state;
+    const { data, errorName, errorBirthday } = this.state;
     return (
       <div className="forms-field">
         <div className="form">
@@ -77,16 +91,10 @@ class Forms extends Component<IFormsState> {
             </div>
             <label htmlFor="name">Your first and second name</label>
             <input id="name" name="name" type="text" placeholder="Alex Popov" />
-            <span style={{ color: 'red' }}>{error ? 'Invalid value' : null}</span>
+            <span style={{ color: 'red' }}>{errorName ? 'Invalid value' : null}</span>
             <label htmlFor="birthday">Your birthday</label>
-            <input
-              id="birthday"
-              name="birthday"
-              type="date"
-              defaultValue="2023-03-21"
-              min="1950-01-01"
-              max="2023-21-21"
-            />
+            <input id="birthday" name="birthday" type="date" min="1950-01-01" max="2023-21-21" />
+            <span style={{ color: 'red' }}>{errorBirthday ? 'Tick rights' : null}</span>
             <label htmlFor="select"> Pick your country:</label>
             <select onChange={this.handleChange} id="select" name="select">
               <option value="Belarus">Belarus</option>

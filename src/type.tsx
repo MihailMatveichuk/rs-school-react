@@ -13,6 +13,7 @@ export type ICards = {
 };
 
 export interface ICardForm {
+  file: string;
   name: string;
   birthday: string;
   select: string;
