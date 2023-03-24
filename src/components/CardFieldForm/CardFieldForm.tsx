@@ -8,7 +8,7 @@ class CardFieldForm extends Component<{ data: Array<ICardForm> }> {
     const { data } = this.props;
     return (
       <div className="cards">
-        <div className="cards-field">
+        <div className="cards-field-form">
           {data.map((item: ICardForm, id: number) => {
             return <CardForm item={item} key={id} />;
           })}
