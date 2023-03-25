@@ -11,7 +11,7 @@ import { ICards } from 'type';
 import './App.scss';
 import Forms, { IFormsState } from './components/Forms/Forms';
 
-class App extends Component {
+class App extends Component<{ data: Array<ICards>; term: string }> {
   state = {
     data,
     term: '',

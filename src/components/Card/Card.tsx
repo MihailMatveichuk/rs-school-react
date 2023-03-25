@@ -4,7 +4,6 @@ import './Card.scss';
 
 const Card = (item: ICards) => {
   const [toggle, setToggle] = useState(false);
-  console.log(item);
 
   const onToggleDesc = () => {
     setToggle(!toggle);
