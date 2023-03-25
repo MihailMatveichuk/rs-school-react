@@ -40,13 +40,13 @@ const App = () => {
   };
 
   const visibleData = searchEmp(data, term);
-  const formsState: IFormsState = {
-    data: [
-      { file: '', name: 'John Doe', birthday: '', select: '', switcher: false, checkbox: false },
-    ],
-    errorName: false,
-    errorBirthday: false,
-  };
+  // const formsState: IFormsState = {
+  //   data: [
+  //     { file: '', name: 'John Doe', birthday: '', select: '', switcher: false, checkbox: false },
+  //   ],
+  //   errorName: false,
+  //   errorBirthday: false,
+  // };
   return (
     <div className="main-page">
       <ErrorBoundary>
@@ -55,7 +55,7 @@ const App = () => {
           <Route path="/" element={<CardsField data={visibleData} />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Error />} />
-          <Route path="/form" element={<Forms {...formsState} />} />
+          <Route path="/form" element={<Forms />} />
         </Routes>
         <Footer />
       </ErrorBoundary>
