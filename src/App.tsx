@@ -9,7 +9,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './components/Footer/Footer';
 import { ICards } from 'type';
 import './App.scss';
-import Forms from './components/Forms/Forms';
+import Forms, { IFormsState } from './components/Forms/Forms';
 
 class App extends Component {
   state = {
@@ -47,6 +47,13 @@ class App extends Component {
   render() {
     const { data, term } = this.state;
     const visibleData = this.searchEmp(data, term);
+    const formsState: IFormsState = {
+      data: [
+        { file: '', name: 'John Doe', birthday: '', select: '', switcher: false, checkbox: false },
+      ],
+      errorName: false,
+      errorBirthday: false,
+    };
     return (
       <div className="main-page">
         <ErrorBoundary>
@@ -55,7 +62,7 @@ class App extends Component {
             <Route path="/" element={<CardsField data={visibleData} />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<Error />} />
-            <Route path="/form" element={<Forms />} />
+            <Route path="/form" element={<Forms {...formsState} />} />
           </Routes>
           <Footer />
         </ErrorBoundary>

@@ -47,7 +47,7 @@ describe('App working test', () => {
           brand: '',
           category: '',
           thumbnail: '',
-          images: [],
+          images: [''],
         }}
       />
     );

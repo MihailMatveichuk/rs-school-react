@@ -22,7 +22,7 @@ class CardsField extends Component<{ data: Array<ICards> }, { offset: number }> 
         <div className="cards-field">
           {data
             .map((item: ICards) => {
-              return <Card item={item} key={item.id} />;
+              return <Card {...item} key={item.id} />;
             })
             .splice(0, offset)}
         </div>

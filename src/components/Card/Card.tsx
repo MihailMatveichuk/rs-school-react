@@ -1,58 +1,46 @@
-import React, { Component } from 'react';
-import { ICards, SyntheticEvent } from 'type';
+import React, { useState } from 'react';
+import { ICards } from 'type';
 import './Card.scss';
 
-interface ICardState {
-  toggle: boolean;
-  id: string;
-}
+const Card = (item: ICards) => {
+  const [toggle, setToggle] = useState(false);
+  console.log(item);
 
-class Card extends Component<{ item: ICards }, ICardState> {
-  state = {
-    toggle: false,
-    id: '',
+  const onToggleDesc = () => {
+    setToggle(!toggle);
+  };
+  const { id, title, rating, price, thumbnail, brand } = item;
+  const style = toggle ? `product-desc__active` : 'product-desc';
+  const safeDesc = (id: number) => {
+    if (item.id === id) {
+      return item.description;
+    }
   };
 
-  onToggleDesc = (e: SyntheticEvent) => {
-    this.setState(({ toggle }) => ({
-      toggle: !toggle,
-      id: e.target.parentNode.id,
-    }));
-  };
+  return (
+    <div className="product-item">
+      <img src={thumbnail} alt="img" />
+      <div className="product-list">
+        <h3>{title}</h3>
+        <p className="price">{price + '$'}</p>
+        <p>{`Brand: ${brand}`}</p>
+        <p
+          style={{
+            fontWeight: 'bold',
+          }}
+        >
+          Rating: {rating + ' ★'}
+        </p>
 
-  render() {
-    const { id, title, rating, price, thumbnail, brand } = this.props.item;
-    const style = this.state.toggle ? `product-desc__active` : 'product-desc';
-    const safeDesc = (id: number) => {
-      if (this.props.item.id === id) {
-        return this.props.item.description;
-      }
-    };
-    return (
-      <div className="product-item">
-        <img src={thumbnail} alt="img" />
-        <div className="product-list">
-          <h3>{title}</h3>
-          <p className="price">{price + '$'}</p>
-          <p>{`Brand: ${brand}`}</p>
-          <p
-            style={{
-              fontWeight: 'bold',
-            }}
-          >
-            Rating: {rating + ' ★'}
-          </p>
-
-          <div className={style}>
-            <span>{safeDesc(id)}</span>
-          </div>
-          <button className="button" onClick={this.onToggleDesc}>
-            Description
-          </button>
+        <div className={style}>
+          <span>{safeDesc(id)}</span>
         </div>
+        <button className="button" onClick={onToggleDesc}>
+          Description
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Card;
