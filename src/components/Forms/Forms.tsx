@@ -98,7 +98,7 @@ class Forms extends Component<IFormsState> {
   handleChange: ChangeEventHandler<HTMLSelectElement> | undefined;
 
   render() {
-    const { data, errorName, errorRights, errorInput } = this.state;
+    const { data, errorName, errorRights } = this.state;
     const today = new Date();
     const year = today.getFullYear();
     const month = ('0' + (today.getMonth() + 1)).slice(-2);
