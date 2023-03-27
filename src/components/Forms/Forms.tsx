@@ -19,18 +19,6 @@ class Forms extends Component<IFormsState> {
     errorInput: false,
   };
 
-  uploadImage(file: Blob) {
-    const reader = new FileReader();
-    reader.addEventListener('load', function () {
-      if (this.result && localStorage) {
-        localStorage.setItem(file.name, this.result.toString());
-      } else {
-        alert('oops');
-      }
-    });
-    reader.readAsDataURL(file);
-  }
-
   handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const card: ICardForm = {
@@ -127,7 +115,6 @@ class Forms extends Component<IFormsState> {
                 <img src={Photo} alt="file" id="input_img" />
               </label>
             </div>
-            <span style={{ color: 'red' }}>{errorInput ? 'Choose image' : null}</span>
             <label htmlFor="name">Your first and second name</label>
             <input id="name" name="name" type="text" placeholder="Alex Popov" />
             <span style={{ color: 'red' }}>{errorName ? 'Invalid value' : null}</span>
