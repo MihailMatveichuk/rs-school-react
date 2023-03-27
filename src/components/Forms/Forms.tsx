@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import CardsFieldForm from '../CardFieldForm/CardFieldForm';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import Photo from '../../assets/Avatar.png';
-import './Forms.scss';
 import { ICardForm } from 'type';
+import './Forms.scss';
 
 export interface IFormsState {
   data: ICardForm[];
@@ -21,10 +21,19 @@ const Forms = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const formData = data as ICardForm;
-    alert(JSON.stringify(data));
     setData([...dataCard, formData]);
+    alert('Data was saved');
   };
 
+  const regex = new RegExp(
+    /^[А-ЯЁІЇЄҐ][а-яёіїєґ]{2,}\s[А-ЯЁІЇЄҐ][а-яёіїєґ]{2,}$|^[A-Z][a-z]{2,}\s[A-Z][a-z]{2,}$/gm
+  );
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = ('0' + (today.getMonth() + 1)).slice(-2);
+  const day = ('0' + today.getDate()).slice(-2);
+  const formattedDate = year + '-' + month + '-' + day;
   return (
     <div className="forms-field">
       <div className="form">
@@ -36,11 +45,27 @@ const Forms = () => {
               <img src={Photo} alt="file" id="input_img" />{' '}
             </label>
           </div>
-          <label htmlFor="name">Your first and second name</label>
-          <input {...register('name')} id="name" type="text" placeholder="Alex Popov" />
-          <span style={{ color: 'red' }}></span>
+          <label htmlFor="firstName">Your first and second name</label>
+          <input
+            {...register('firstName', {
+              pattern: regex,
+              required: 'This field is required!',
+            })}
+            id="firstName"
+            type="text"
+            placeholder="Alex Popov"
+          />
+          <div className="input-error">
+            {errors?.firstName && <p>{errors?.firstName?.message || 'Invalid value!'}</p>}
+          </div>
           <label htmlFor="birthday">Your birthday</label>
-          <input {...register('birthday')} id="birthday" type="date" min="1950-01-01" />
+          <input
+            {...register('birthday', { required: 'This field is required', max: formattedDate })}
+            id="birthday"
+            type="date"
+            min="1950-01-01"
+          />
+          <div className="input-error">{errors?.birthday && `Max value is ${formattedDate}!`}</div>
           <label htmlFor="select"> Pick your country:</label>
           <select {...register('select')} id="select" name="select">
             <option value="Belarus">Belarus</option>
@@ -53,15 +78,18 @@ const Forms = () => {
             <span className="slider round"></span>
           </label>
           <label htmlFor="select" className="checkbox-field">
-            I consent to my personal data:
-            <input
-              id="checkbox"
-              type="checkbox"
-              className="custom-checkbox"
-              {...register('checkbox')}
-            />
-            <span style={{ color: 'red' }}></span>
+            <div className="checkbox-top-field">
+              I consent to my personal data:
+              <input
+                id="checkbox"
+                type="checkbox"
+                className="custom-checkbox"
+                {...register('checkbox', { required: 'Check this' })}
+              />
+            </div>
+            <div className="input-error">{errors?.checkbox && 'Give rights'}</div>
           </label>
+
           <button type="submit">Submit</button>
         </form>
       </div>

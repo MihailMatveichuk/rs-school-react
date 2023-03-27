@@ -13,9 +13,9 @@ export type ICards = {
 };
 
 export interface ICardForm {
-  file: FileList;
-  name: string;
-  birthday: Date;
+  file: string;
+  firstName: string;
+  birthday: string;
   select: string;
   switcher: boolean;
   checkbox: boolean;

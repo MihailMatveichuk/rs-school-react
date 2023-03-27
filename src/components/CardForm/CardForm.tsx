@@ -4,12 +4,12 @@ import { ICardForm } from 'type';
 
 class CardForm extends Component<{ item: ICardForm }> {
   render() {
-    const { file, name, birthday, select, switcher, checkbox } = this.props.item;
+    const { file, firstName, birthday, select, switcher, checkbox } = this.props.item;
     return (
       <div className="product-item">
         <img src={file} alt="img" className="image" />
         <div className="product-list">
-          <h3>{name}</h3>
+          <h3>{firstName}</h3>
           <p className="price">{`Birthday: ${birthday}`}</p>
           <p>{`Country: ${select}`}</p>
           <p

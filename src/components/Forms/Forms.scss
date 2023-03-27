@@ -117,11 +117,20 @@
     }
     .checkbox-field {
       display: flex;
-      align-items: center;
       column-gap: 5px;
+      .checkbox-top-field {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 5px;
+      }
+    }
+    .input-error {
+      color: #fc5a5acb;
     }
     .custom-checkbox {
       border-radius: 4px;
+      display: flex;
       width: 20px;
       height: 20px;
       &:focus {

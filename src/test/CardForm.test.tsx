@@ -6,7 +6,7 @@ import { ICardForm } from 'type';
 describe('CardForm', () => {
   const testData: ICardForm = {
     file: 'test-image.jpg',
-    name: 'John Doe',
+    firstName: 'John Doe',
     birthday: '01/01/1980',
     select: 'USA',
     switcher: true,

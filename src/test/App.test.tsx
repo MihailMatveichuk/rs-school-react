@@ -7,6 +7,7 @@ import Search from '../components/Search/Search';
 import App from '../App';
 import CardsField from '../components/CardsField/CardsField';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ICards } from 'type';
 
 describe('App working test', () => {
   it('App component test', async () => {
@@ -36,19 +37,15 @@ describe('App working test', () => {
   it('Card component test', () => {
     render(
       <Card
-        item={{
-          id: 1,
-          title: '',
-          description: '',
-          price: 400,
-          discountPercentage: 50,
-          rating: 4.5,
-          stock: 40,
-          brand: '',
-          category: '',
-          thumbnail: '',
-          images: [''],
-        }}
+        id={0}
+        title={''}
+        description={''}
+        price={0}
+        rating={0}
+        brand={''}
+        category={''}
+        thumbnail={''}
+        images={[]}
       />
     );
     expect(screen.queryByAltText('img')).toBeDefined();
