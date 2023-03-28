@@ -8,7 +8,7 @@ const formsState: IFormsState = {
     { file: '', name: 'John Doe', birthday: '', select: '', switcher: false, checkbox: false },
   ],
   errorName: false,
-  errorBirthday: false,
+  errorRights: false,
 };
 
 describe('Forms', () => {

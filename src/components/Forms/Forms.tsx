@@ -7,7 +7,7 @@ import { ICardForm } from 'type';
 export interface IFormsState {
   data: ICardForm[];
   errorName: boolean;
-  errorBirthday: boolean;
+  errorRights: boolean;
 }
 
 class Forms extends Component<IFormsState> {
@@ -16,7 +16,6 @@ class Forms extends Component<IFormsState> {
     data: [],
     errorName: false,
     errorRights: false,
-    errorInput: false,
   };
 
   handleSubmit = (event: FormEvent<HTMLFormElement>) => {
