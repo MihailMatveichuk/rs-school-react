@@ -13,7 +13,7 @@ const CardFieldForm = ({ data }: IPropsData) => {
     <div className="cards">
       <div className="cards-field-form">
         {data.map((item: ICardForm, id: number) => {
-          return <CardForm item={item} key={id} />;
+          return <CardForm {...item} key={id} />;
         })}
       </div>
     </div>

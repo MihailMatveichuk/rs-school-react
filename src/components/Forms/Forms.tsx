@@ -21,6 +21,7 @@ const Forms = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const formData = data as ICardForm;
+    console.log(data);
     setData([...dataCard, formData]);
     alert('Data was saved');
   };
@@ -56,7 +57,7 @@ const Forms = () => {
             placeholder="Alex Popov"
           />
           <div className="input-error">
-            {errors?.firstName && <p>{errors?.firstName?.message || 'Invalid value!'}</p>}
+            {errors?.firstName && <p>{errors?.firstName && 'Invalid value!'}</p>}
           </div>
           <label htmlFor="birthday">Your birthday</label>
           <input
