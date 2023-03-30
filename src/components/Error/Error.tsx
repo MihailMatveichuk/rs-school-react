@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import img from './error.gif';
 import './Error.scss';
 
-class Error extends Component {
-  render() {
-    return (
-      <div className="error">
-        <img src={img} alt="img" />
-        <h2>Error 404 (Page not found)</h2>
-      </div>
-    );
-  }
-}
+const Error = () => {
+  return (
+    <div className="error">
+      <img src={img} alt="img" />
+      <h2>Error 404 (Page not found)</h2>
+    </div>
+  );
+};
 
 export default Error;

@@ -5,9 +5,8 @@ import Header from './components/Header/Header';
 import CardsField from './components/CardsField/CardsField';
 import About from './components/About/About';
 import Error from './components/Error/Error';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './components/Footer/Footer';
-import Forms, { IFormsState } from './components/Forms/Forms';
+import Forms from './components/Forms/Forms';
 import { ICards } from 'type';
 import './App.scss';
 
@@ -40,25 +39,16 @@ const App = () => {
   };
 
   const visibleData = searchEmp(data, term);
-  // const formsState: IFormsState = {
-  //   data: [
-  //     { file: '', name: 'John Doe', birthday: '', select: '', switcher: false, checkbox: false },
-  //   ],
-  //   errorName: false,
-  //   errorBirthday: false,
-  // };
   return (
     <div className="main-page">
-      <ErrorBoundary>
-        <Header onUpdateSearch={onUpdateSearch} value={term} />
-        <Routes>
-          <Route path="/" element={<CardsField data={visibleData} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/form" element={<Forms />} />
-        </Routes>
-        <Footer />
-      </ErrorBoundary>
+      <Header onUpdateSearch={onUpdateSearch} value={term} />
+      <Routes>
+        <Route path="/" element={<CardsField data={visibleData} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<Error />} />
+        <Route path="/form" element={<Forms />} />
+      </Routes>
+      <Footer />
     </div>
   );
 };

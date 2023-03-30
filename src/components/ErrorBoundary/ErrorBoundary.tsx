@@ -1,25 +1,18 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Error from '../Error/Error';
 
-class ErrorBoundary extends Component<{ children: React.ReactNode }, { error: boolean }> {
-  state = {
-    error: false,
-  };
+const ErrorBoundary = (children: React.ReactNode) => {
+  const [error, setError] = useState(false);
 
-  componentDidCatch() {
-    this.setState({
-      error: true,
-    });
-  }
+  useEffect(() => {
+    setError(true);
+  }, [error]);
 
-  render() {
-    if (this.state.error) {
-      return <Error />;
-    } else {
-      return this.props.children;
-    }
+  if (error) {
+    return <Error />;
+  } else {
+    return children;
   }
-}
+};
 
 export default ErrorBoundary;

@@ -1,18 +1,17 @@
 import React from 'react';
-import { ICardForm } from 'type';
+import { ICardData } from 'type';
 import CardForm from '../CardForm/CardForm';
 import './CardFieldForm.scss';
 
 interface IPropsData {
-  data: ICardForm[];
+  data: ICardData[];
 }
 
 const CardFieldForm = ({ data }: IPropsData) => {
-  console.log(data);
   return (
     <div className="cards">
       <div className="cards-field-form">
-        {data.map((item: ICardForm, id: number) => {
+        {data.map((item, id: number) => {
           return <CardForm {...item} key={id} />;
         })}
       </div>

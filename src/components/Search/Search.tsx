@@ -1,33 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { IHeaderProps } from '../Header/Header';
 import './Search.scss';
 
-interface ISearchProps {
-  value: string;
-  onUpdateSearch: (term: string) => void;
-}
+const Search = (props: IHeaderProps) => {
+  const [term, setTerm] = useState('');
 
-class Search extends Component<ISearchProps, { term: string }> {
-  state = {
-    term: '',
-  };
-
-  onUpdateSearch = (e: { target: { value: string } }) => {
+  const onUpdateSearch = (e: { target: { value: string } }) => {
     const term = e.target.value;
-    this.setState({ term });
-    this.props.onUpdateSearch(term);
+    setTerm(term);
+    props.onUpdateSearch(term);
   };
 
-  render() {
-    return (
-      <input
-        type="text"
-        className="search form-control search-input danger"
-        placeholder="Search..."
-        value={this.props.value || this.state.term}
-        onChange={this.onUpdateSearch}
-      />
-    );
-  }
-}
+  return (
+    <input
+      type="text"
+      className="search form-control search-input danger"
+      placeholder="Search..."
+      value={props.value || term}
+      onChange={onUpdateSearch}
+    />
+  );
+};
 
 export default Search;

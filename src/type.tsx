@@ -13,12 +13,16 @@ export type ICards = {
 };
 
 export interface ICardForm {
-  file: string;
+  file: FileList | null;
   firstName: string;
   birthday: string;
   select: string;
   switcher: boolean;
   checkbox: boolean;
+}
+
+export interface ICardData extends ICardForm {
+  avatar: string;
 }
 
 export type MyData = Array<ICards>;

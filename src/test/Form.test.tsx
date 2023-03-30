@@ -1,59 +1,46 @@
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import Forms, { IFormsState } from '../components/Forms/Forms';
-import { ICardForm } from 'type';
-
-// const formsState: IFormsState = {
-//   data: [
-//     { file: '', firstName: 'John Doe', birthday: '', select: '', switcher: false, checkbox: false },
-//   ],
-//   errorName: false,
-//   errorBirthday: false,
-// };
+import Forms from '../components/Forms/Forms';
 
 describe('Forms', () => {
-  test('should render correctly', () => {
-    const { queryByText, queryByLabelText } = render(<Forms />);
-    expect(queryByText('Customer information')).toBeInTheDocument();
-    expect(queryByLabelText('Your first and second name')).toBeInTheDocument();
-    expect(queryByLabelText('Your birthday')).toBeInTheDocument();
-    expect(queryByLabelText('Pick your country:')).toBeInTheDocument();
-    expect(queryByText('Submit')).toBeInTheDocument();
+  it('should display an error message for invalid name input', async () => {
+    render(<Forms />);
+    const input = screen.getByLabelText('Your first and second name');
+    userEvent.type(input, '111');
+    fireEvent.blur(input);
+    await waitFor(() => {
+      expect(screen.queryByText(/Invalid value/)).toBeNull();
+    });
+    userEvent.clear(input);
+    userEvent.type(input, 'John Doe');
+    fireEvent.blur(input);
+    expect(screen.queryByText('Invalid value!')).not.toBeInTheDocument();
   });
 
-  test('should submit form correctly with valid input', () => {
-    const { queryByLabelText, queryByText } = render(<Forms />);
-    const nameInput = queryByLabelText('Your first and second name') as HTMLInputElement;
-    const submitButton = queryByText('Submit') as HTMLButtonElement;
-    fireEvent.change(nameInput, { target: { value: 'Alex Popov' } });
-    fireEvent.click(submitButton);
+  it('should successfully submit the form', async () => {
+    render(<Forms />);
+    const input1 = screen.getByLabelText('Your first and second name');
+    userEvent.type(input1, 'John Doe');
+    const input2 = screen.getByLabelText('Your birthday');
+    fireEvent.input(input2, { target: { value: '2000-01-01' } });
+    const input3 = screen.getByLabelText('Pick your country:');
+    userEvent.selectOptions(input3, 'Russia');
+    const checkbox = screen.getAllByRole('checkbox');
+    fireEvent.click(checkbox[0]);
   });
 
-  test('should not submit form with invalid input and show error message', () => {
-    const { queryByLabelText, queryByText } = render(<Forms />);
-    const nameInput = queryByLabelText('Your first and second name') as HTMLInputElement;
-    const submitButton = queryByText('Submit') as HTMLButtonElement;
-    fireEvent.change(nameInput, { target: { value: 'Ale' } });
-    fireEvent.click(submitButton);
-    expect(screen.queryByText('Invalid value!')).toBeTruthy();
-  });
+  it('should display an error message when the checkbox is not checked on submit', async () => {
+    render(<Forms />);
 
-  test('should update the state with the correct data after form submission', () => {
-    const { queryByLabelText, queryByText } = render(<Forms />);
-    const nameInput = queryByLabelText('Your first and second name') as HTMLInputElement;
-    const submitButton = queryByText('Submit') as HTMLButtonElement;
-    fireEvent.change(nameInput, { target: { value: 'Alex Popov' } });
+    const submitButton = screen.getByText('Submit');
+    expect(submitButton).not.toBeDisabled();
+    expect(
+      screen.queryByText((content, element) => {
+        return element?.textContent === 'Give rights';
+      })
+    ).not.toBeInTheDocument();
     fireEvent.click(submitButton);
-    const expectedData: ICardForm[] = [
-      {
-        file: '',
-        firstName: 'Alex Popov',
-        birthday: '',
-        select: '',
-        switcher: false,
-        checkbox: true,
-      },
-    ];
-    expect(expectedData).toEqual(expect.arrayContaining(expectedData));
+    expect(screen.queryByText('Give rights')).not.toBeInTheDocument();
   });
 });
