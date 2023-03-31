@@ -7,7 +7,6 @@ import Search from '../components/Search/Search';
 import App from '../App';
 import CardsField from '../components/CardsField/CardsField';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ICards } from 'type';
 
 describe('App working test', () => {
   it('App component test', async () => {
