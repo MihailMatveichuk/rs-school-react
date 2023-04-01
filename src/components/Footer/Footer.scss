@@ -1,0 +1,15 @@
+.footer {
+  padding: 14px 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 0.5px solid rgba(138, 132, 132, 0.248);
+  .mike-icon {
+    width: 35px;
+    height: 35px;
+  }
+  .RS-logo {
+    height: 40px;
+    width: 90px;
+  }
+}
